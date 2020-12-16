@@ -1,5 +1,8 @@
 from sympy.abc import x, y, _clash1
-from sympy import sympify, expand, simplify
+from sympy.plotting import plot
+from sympy import *
+import matplotlib.pyplot as plt
+import numpy as np
 
 coordinates = [] 
 
@@ -43,3 +46,30 @@ for i in range(len(lagrangeList)):
 
 print("Para xk = {} => P(x) = {}".format(xk, result.subs(x, xk)))
 print("P(x) = {}".format(simplify(result)))
+
+x_coordinates = []
+y_coordinates = []
+
+for i in range(len(coordinates)):
+  x_coordinates.append(coordinates[i][0])
+
+for i in range(len(coordinates)):
+  y_coordinates.append(coordinates[i][1])
+
+interval = np.linspace(coordinates[0][0], coordinates[-1][0], num=100)
+fx = []
+for i in range(len(interval)):
+  fx.append(result.subs(x, interval[i]))
+
+plt.plot(interval, fx)
+plt.scatter(x_coordinates, y_coordinates)
+plt.show()
+
+
+'''
+-2 3
+-1 2
+0 0
+1 -1
+2 -3
+3 0'''
