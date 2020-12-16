@@ -13,21 +13,17 @@ for j in range(0, len(index)):
   del coordinatesRef[j]
   print(coordinatesRef)
   for i in range(len(coordinatesRef)):
-    g.append("x - {}".format(coordinates[coordinatesRef[i]][0]))
-    h.append("{} - {}".format(coordinates[j][0], coordinates[coordinatesRef[i]][0]))
+    g.append("(x - {})".format(coordinates[coordinatesRef[i]][0]))
+    h.append("({} - {})".format(coordinates[j][0], coordinates[coordinatesRef[i]][0]))
   print(g)
   print(h)
+  numerador = expand("*".join(str(x) for x in g))
+  denominador = expand("*".join(str(x) for x in h))
+  print(numerador)
+  print(denominador)
   g = []
   h = []
   coordinatesRef = index.copy()
 
-
-
-'''
-coordinates -> Quando i = 0, deleta o item de índice 0 de coordinates e 
-utiliza o restante no numerador 
-
-
-'''
 
 
