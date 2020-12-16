@@ -9,7 +9,11 @@ g = []
 h = []
 r = []
 
-for j in range(0, len(index)):
+pList = []
+
+lagrangeList = []
+
+for j in range(len(index)):
   del coordinatesRef[j]
   print(coordinatesRef)
   for i in range(len(coordinatesRef)):
@@ -21,9 +25,19 @@ for j in range(0, len(index)):
   denominador = expand("*".join(str(x) for x in h))
   print(numerador)
   print(denominador)
+  lagrange = expand(numerador/denominador)
+  lagrangeList.append(lagrange)
+  print(lagrangeList)
   g = []
   h = []
   coordinatesRef = index.copy()
+
+
+  for i in range(lagrangeList):
+    pList.append(lagrangeList[i] * coordinates[i][1])
+   
+  
+  print(pList)
 
 
 
