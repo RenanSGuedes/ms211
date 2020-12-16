@@ -8,11 +8,11 @@ coordinates = []
 
 i = input()
 while i != '':
-    coordinates.append([int(s) for s in i.split()])
+    coordinates.append([float(s) for s in i.split()])
     i = input()
 
-idx = int(input("Índice: "))
-xk = int(input("xk = "))
+idx = int(input("Índice (De 1 a {}): ".format(len(coordinates) - 1)))
+xk = float(input("xk = "))
 index = []
 for i in range(idx + 1):
   index.append(i)
@@ -61,15 +61,7 @@ fx = []
 for i in range(len(interval)):
   fx.append(result.subs(x, interval[i]))
 
-plt.plot(interval, fx)
-plt.scatter(x_coordinates, y_coordinates)
+plt.plot(interval, fx, color='b')
+plt.grid(True, linewidth=.5, linestyle='--', color='r')
+plt.scatter(x_coordinates, y_coordinates, color='g')
 plt.show()
-
-
-'''
--2 3
--1 2
-0 0
-1 -1
-2 -3
-3 0'''
