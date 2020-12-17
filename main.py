@@ -4,7 +4,7 @@ from sympy import *
 import matplotlib.pyplot as plt
 import numpy as np
 
-coordinates = [] 
+coordinates = [] # Armazena as coordenadas do input construindo umas lista da forma [(P1), (P2), ..., (Pn)]
 
 print('Coordenadas (Duplo <enter> finaliza o input)')
 print('x y')
@@ -13,21 +13,17 @@ while i != '':
     coordinates.append([float(s) for s in i.split()])
     i = input()
 
-idx = int(input("Índice (De 1 a {}): ".format(len(coordinates) - 1)))
-xk = float(input("xk = "))
-index = []
+idx = int(input("Grau (De 1 a {}): ".format(len(coordinates) - 1))) # Limita o intervalo do input em função do número de coordenadas fornecidos
+xk = float(input("xk = ")) # Valor de x a ser substituido no polinômio P(x) obtido em result
+index = [] # Recebe os índices como número inteiro a partir da quantidade de coordenadas
 for i in range(idx + 1):
   index.append(i)
 
-print(index)
-
-coordinatesRef = index.copy()
-l = []
-g = []
-h = []
-r = []
-pList = []
-lagrangeList = []
+coordinatesRef = index.copy() # Lista cópia do índice sujeita a alterações no próximo laço for
+g = [] # Armazena os fatores do numerador de cada L calculado
+h = [] # Armazena os fatores do denominador de cada L calculado
+pList = [] # Armazena os produtos yn * Ln(x)
+lagrangeList = [] # Armazena os valores de Ln(x) calculados para todas as combinações de xi
 
 for j in range(len(index)):
   del coordinatesRef[j]
@@ -44,13 +40,13 @@ for j in range(len(index)):
 
 for i in range(len(lagrangeList)):
   pList.append(lagrangeList[i] * coordinates[i][1])
-  result = expand("+".join(str(x) for x in pList))
+  result = expand("+".join(str(x) for x in pList)) # Armazena o polinômio que interpola o conjunto de pontos
 
 print("Para xk = {} => P(x) = {}".format(xk, result.subs(x, xk)))
 print("P(x) = {}".format(simplify(result)))
 
-x_coordinates = []
-y_coordinates = []
+x_coordinates = [] # Armazena a posição de x para cada sublista de coordinates
+y_coordinates = [] # Armazena a posição de y para cada sublista de coordinates
 
 for i in range(len(coordinates)):
   x_coordinates.append(coordinates[i][0])
